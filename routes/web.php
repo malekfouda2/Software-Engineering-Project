@@ -50,5 +50,11 @@ Route::post('/login', [UsersController::class, 'authenticate']);
 //Logout
 Route::get('/logout',[UsersController::class, 'logout']);
 
-
+Route::get('/',[UsersController::class, 'loadIndex']);
+Route::get('/blog',[UsersController::class, 'loadBlog']);
+Route::get('/singleblog',[UsersController::class, 'loadSingleBlog']);
+Route::get('/aboutus',[UsersController::class, 'loadAboutUs']);
+Route::get('/gallery',[UsersController::class, 'loadGallery']);
+Route::get('/schedule',[UsersController::class, 'loadSchedule']);
+Route::get('/contact',[UsersController::class, 'loadContact']);
 
