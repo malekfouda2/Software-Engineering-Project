@@ -8,8 +8,66 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+class UsersController extends Controller
+{
+    public function loadIndex()
+    {
+        return view('index');
+    }
+
+    public function loadBlog()
+    {
+        return view('blog');
+    }
+
+    public function loadGallery()
+    {
+        return view('gallery');
+    }
+
+    public function loadSchedule()
+    {
+        return view('schedule');
+    }
+
+    public function loadSingleBlog()
+    {
+        return view('singleblog');
+    }
+
+    public function loadContact()
+    {
+        return view('contact');
+    }
+
+    public function loadAboutUs()
+    {
+        return view('aboutus');
+    }
+
+    public function loadMemberHomepage()
+    {
+        return view('member');
+    }
 
 
+public function loadAdminHomepage()
+    {
+        $members = DB::table('memberships')
+            ->join('users', 'users.id' , '=', 'memberships.user_id')
+            ->select('users.name', 'memberships.id', 'memberships.start_date', 'memberships.finish_date', 'memberships.type')
+            ->get();
+        return view('adminindex')->with('members', $members);
+    }
+
+    public function loadCoachView()
+    {
+        $members = DB::table('memberships')
+            ->join('users', 'users.id' , '=', 'memberships.user_id')
+            ->select('users.name', 'memberships.id', 'memberships.start_date', 'memberships.finish_date', 'memberships.type')
+            ->get();
+        return view('adminindex')->with('members', $members);
+    }
 
 
 
