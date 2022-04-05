@@ -13,22 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Coach Routes
+Route::get('/coach', [UsersController::class, 'loadCoachView']);
 
-Route::get('/about-me', function (){
 
-    return view("about");
 
-});
+Route::get('/profile',[UsersController::class, 'loadProfile'])->middleware('auth');
+Route::get('/editprofile', [UsersController::class, 'loadEditProfile'])->middleware('auth');
+Route::post('/editprofile', [UsersController::class, 'submitEditProfile']);
 
-Route::view('contact-me', "contact", [
-    'page_name' => 'Contact Me Page',
-    'page_description' => "<script>This Is Description</script>"
-]);
+//Signup
+Route::get('/signup',[UsersController::class, 'loadSignup'])->middleware('guest');
+Route::post('/signup', [UsersController::class, 'addUser']);
 
-Route::get('category/{id}', function($id){
-return $id;
-});
+
+//Login
+Route::get('/login',[UsersController::class, 'loadLogin'])->middleware('guest')->name('login');
+Route::post('/login', [UsersController::class, 'authenticate']);
+
+//Logout
+Route::get('/logout',[UsersController::class, 'logout']);
+
+
 
