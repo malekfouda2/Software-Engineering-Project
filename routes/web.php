@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Member Routes
+Route::get('/member', [UsersController::class, 'loadMemberHomepage']);
+Route::get('/viewmembership', [UsersController::class, 'loadViewMembership']);
+Route::get('/viewdiet', [UsersController::class, 'loadViewDiet']);
+Route::get('/viewcoach', [UsersController::class, 'loadViewCoach']);
+
 //Admin Routes
 Route::get('/admin', [UsersController::class, 'loadAdminHomepage']);
 Route::get('/addmember', [UsersController::class, 'loadAddMemberPage']);
