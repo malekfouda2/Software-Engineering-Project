@@ -106,6 +106,16 @@ public function loadAdminHomepage()
     }
 
     public function logout()
+        public function loadCoachView()
+    {
+        $cid = Auth::user()->id;
+        $members = DB::table('memberships')
+            ->join('users', 'users.id', '=', 'memberships.user_id')
+            ->select('users.name', 'memberships.id', 'memberships.start_date', 'memberships.finish_date', 'memberships.type')
+            ->where('users.coach', '=', $cid)
+            ->get();
+        return view('coachindex')->with('members', $members);
+    }
     {
         Auth::logout();
         return redirect('/');
