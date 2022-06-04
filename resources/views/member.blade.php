@@ -1,6 +1,10 @@
 @if(session('addmessage'))
     <script>alert('{{session('addmessage')}}');</script>
 @endif
+@if(session('coachmsg'))
+    <script>alert('{{session('coachmsg')}}');</script>
+@endif
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -65,13 +69,13 @@
                 <div class="single-price-plan">
                     <h4>Normal</h4>
                     <div class="price-plan">
-                        <h2>55 <span>$</span></h2>
+                        <h2>400 EGP</h2>
                         <p>Monthly</p>
                     </div>
                     <ul>
                         <li>Unlimited access to the gym</li>
-                        <li>1 classes per week</li>
-                        <li>FREE drinking package</li>
+                        <li>1 class per week</li>
+                        <li>3 Invitations</li>
                         <li>1 Free personal training</li>
                     </ul>
                     <a href="#" class="primary-btn price-btn">Get Started</a>
@@ -81,33 +85,31 @@
                 <div class="single-price-plan">
                     <h4>Professional</h4>
                     <div class="price-plan">
-                        <h2>95 <span>$</span></h2>
-                        <p>Monthly</p>
+                        <h2>999 EGP </h2>
+                        <p>3 Months</p>
                     </div>
                     <ul>
                         <li>Unlimited access to the gym</li>
                         <li>2 classes per week</li>
-                        <li>FREE drinking package</li>
+                        <li>9 Invitations</li>
                         <li>2 Free personal training</li>
                     </ul>
                     <a href="#" class="primary-btn price-btn">Get Started</a>
-                    <div class="tic-text">
-                        <i class="fa fa-star"></i>
-                    </div>
+
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="single-price-plan">
                     <h4>Advanced</h4>
                     <div class="price-plan">
-                        <h2>165 <span>$</span></h2>
-                        <p>Monthly</p>
+                        <h2>3000 EGP</h2>
+                        <p>1 Year</p>
                     </div>
                     <ul>
                         <li>Unlimited access to the gym</li>
-                        <li>6 classes per week</li>
-                        <li>FREE drinking package</li>
-                        <li>5 Free personal training</li>
+                        <li>4 classes per week</li>
+                        <li>36 Invitation</li>
+                        <li>12 Free personal training</li>
                     </ul>
                     <a href="#" class="primary-btn price-btn">Get Started</a>
                 </div>
@@ -129,66 +131,43 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="trainer-item">
-                    <div class="ti-pic">
-                        <img src="img/trainer/trainer-1.jpg" alt="">
-                        <div class="ti-links">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                        <div class="trainer-text">
-                            <h5>Becky Taylor <span>- COACH</span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="trainer-item">
-                    <div class="ti-pic">
-                        <img src="img/trainer/trainer-2.jpg" alt="">
-                        <div class="ti-links">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                        <div class="trainer-text">
-                            <h5>Noah Leonard <span>- COACH</span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="trainer-item">
-                    <div class="ti-pic">
-                        <img src="img/trainer/trainer-3.jpg" alt="">
-                        <div class="ti-links">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                        <div class="trainer-text">
-                            <h5>Evelyn Fields <span>- COACH</span></h5>
+            @foreach($coaches as $coach)
+                <div class="col-lg-3 col-sm-6">
+                    <div class="trainer-item">
+                        <div class="ti-pic" data-toggle="modal" data-target="#exampleModal{{$coach->id}}">
+                            <img src="{{$coach->image}}" alt="">
+                            <div class="trainer-text">
+                                <h5>{{$coach->name}} <span>- COACH</span></h5>
+                            </div>
+                            <div class="modal fade" id="exampleModal{{$coach->id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Coach - {{$coach->name}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Make {{$coach->name}} your coach?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form method="post" action="">
+                                                @csrf
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close
+                                                </button>
+                                                <input type="text" name="cid" hidden value="{{$coach->id}}">
+                                                <button type="submit"  class="btn btn-primary">Confirm</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="trainer-item">
-                    <div class="ti-pic">
-                        <img src="img/trainer/trainer-4.jpg" alt="">
-                        <div class="ti-links">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                        <div class="trainer-text">
-                            <h5>Leroy Guzman <span>- COACH</span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <div class="row">
@@ -208,41 +187,18 @@
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <div class="testimonial-slider owl-carousel">
-                    <div class="ts-item">
-
-                        <div class="shake1 img">
-                            <img src="img/shake1.jpg"
-                                 width="10"
-                                 height="500" alt="">
+                    @foreach($supplements as $sp)
+                        <div class="ts-item">
+                            <div class="shake1 img">
+                                <img src="{{$sp->image}}"
+                                     width="10"
+                                     height="500" alt="">
+                            </div>
+                            <div class="price-plan">
+                                <h2>{{$sp->price}} <span>EGP</span></h2>
+                            </div>
                         </div>
-                        <div class="price-plan">
-                            <h2>150 <span>$</span></h2>
-                        </div>
-
-                    </div>
-                    <div class="ts-item">
-
-                        <div class="shake2 img">
-                            <img src="img/shake2.jpg"
-                                 width="10"
-                                 height="500" alt="">
-                        </div>
-                        <div class="price-plan">
-                            <h2>300 <span>$</span></h2>
-                        </div>
-
-                    </div>
-                    <div class="ts-item">
-
-                        <div class="shake2 img">
-                            <img src="img/shake3.jpg"
-                                 width="10"
-                                 height="500" alt="">
-                        </div>
-                        <div class="price-plan">
-                            <h2>200 <span>$</span></h2>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
