@@ -43,18 +43,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="trainer-item">
-                    <div class="ti-pic">
-                        <img src="img/trainer/trainer-1.jpg" alt="">
-                        <div class="ti-links">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
+            @foreach($coach as $c)
+                <div class="col-lg-3 col-sm-6">
+                    <div class="trainer-item">
+                        <div class="ti-pic">
+                            <img src="{{$c->image}}" alt="">
+                            <div class="trainer-text">
+                                <h5>{{$c->name}} - {{$c->age}}</h5>
+                                <h5>{{$c->email}}</h5>
+                                <h5>{{$c->phone_number}}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
 
         </div>
     </div>
