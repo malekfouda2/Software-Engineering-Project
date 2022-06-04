@@ -49,7 +49,20 @@ class UsersController extends Controller
     {
         return view('member');
     }
-
+    
+    public function memberSubmitCoach(Request $request)
+    {
+        $coachid = request('cid');
+        $userid = Auth::user()->id;
+        $user = User::find($userid);
+        $user->coach = $coachid;
+        if($user->save()){
+            return redirect('/member')->with('coachmsg', 'Coach added to your account!');
+        }
+        else {
+            return redirect('/member')->with('coachmsg', 'Error adding coach to your account!');
+        }
+    }
 
 public function loadAdminHomepage()
     {
