@@ -1,3 +1,7 @@
+@if(Auth::user()->type != "1")
+    <script>alert('unauthorized!');</script>
+    <script>location.replace('/');</script>
+@endif
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -59,8 +63,69 @@
             <div class="col-lg-8 offset-lg-1">
                 <div class="contact-form">
                     <h4>Fill the form!</h4>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    @if(session('addmessage'))
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            {{session('addmessage')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if($errors->first('full_name') != "")
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error in the full name field.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
 
+                    @if($errors->first('password') != "")
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error in the password field.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if($errors->first('image') != "")
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error in the image field.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if($errors->first('email') != "")
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error in the email field.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if($errors->first('age') != "")
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error in the age field.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if($errors->first('phone_number') != "")
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error in the phone number field.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    <form action="" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-6">
                                 <label for="full_name" style="color: white;">
