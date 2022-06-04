@@ -120,6 +120,36 @@ public function loadAdminHomepage()
         Auth::logout();
         return redirect('/');
     }
+    public function loadCoachesAdmin()
+    {
+        $coaches = DB::table('users')
+            ->where('type', '=', '2')
+            ->get();
+        return view('viewcoaches')->with('coaches', $coaches);
+    }
+    public function authenticate(Request $request)
+    {
+        request()->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $email = request('email');
+        $password = request('password');
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            if (Auth::user()->type == '1') {
+                return redirect('/admin')->with(['loginmessage' => 'Welcome Back!']);
+            } elseif (Auth::user()->type == '2') {
+                return redirect('/coach')->with(['loginmessage' => 'Welcome Back!']);
+            } else {
+                return redirect('/member')->with(['loginmessage' => 'Welcome Back!']);
+            }
+        } else {
+            return redirect('/login')->with(['loginmessage' => 'Invalid email or password']);
+        }
+    }
+
 
  public function addSupplement(Request $request)
     {
