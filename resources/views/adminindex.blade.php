@@ -36,47 +36,6 @@
 
 <!-- Header Section Begin -->
 @include('navbar')
-<!-- Header End -->
-
-<!-- Hero Section Begin -->
-<div class="single-hero-item set-bg" data-setbg="img/hero-slider/hero-2.jpg">
-    <div class="container">
-        <div class="row">
-            <table class="table table-hover">
-                <thead>
-                <tr style="background-color: white;">
-                    <th scope="col">ID</th>
-                    <th scope="col">Full Name</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Membership Begin</th>
-                    <th scope="col">Membership End</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($members as $member)
-                    <tr class="table-primary">
-                        <td>{{$member->id}}</td>
-                        <td>{{$member->name}}</td>
-                        <td>{{$member->type}}</td>
-                        <td>{{$member->start_date}}</td>
-                        <td>{{$member->finish_date}}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <a href="/addmember" class="primary-btn f-btn">Add Member</a>
-            <div class="col-lg-12">
-                <div class="hero-text">
-                    <h2>Join Us Now</h2>
-                    <h1>FITNESS & SPORT</h1>
-                    <a href="#" class="primary-btn">Read More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</section>
 <!-- Hero End -->
 
 <!-- Feature Section Begin -->
@@ -91,8 +50,8 @@
             </div>
             <div class="col-md-4">
                 <div class="feature-item set-bg" data-setbg="img/feature/feature-2.jpg">
-                    <h3>Supplements Inventory</h3>
-                    <a href="/viewsupplements" class="primary-btn f-btn">view</a>
+                    <h3>View Supplements</h3>
+                    <a href="/viewsupplements" class="primary-btn f-btn">View</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -101,7 +60,27 @@
                     <a href="/addmember" class="primary-btn f-btn">Add</a>
                 </div>
             </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-item set-bg" data-setbg="img/feature/feature-1.jpg">
+                    <h3>View All Requests</h3>
+                    <a href="/viewrequests" class="primary-btn f-btn">View</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-item set-bg" data-setbg="img/feature/feature-2.jpg">
+                    <h3>View Memberships</h3>
+                    <a href="/viewmemberships" class="primary-btn f-btn">view</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-item set-bg" data-setbg="img/feature/feature-3.jpg">
+                    <h3>Add New Coach</h3>
+                    <a href="/addcoach" class="primary-btn f-btn">Add</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
